@@ -1,0 +1,71 @@
+@import "abstracts/mixins";
+@import "abstracts/colors";
+@import "abstracts/grid";
+@import "abstracts/typography";
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.title {
+  font-size: $fs--900;
+  font-weight: $fw--bold;
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(25%, auto));
+  grid-gap: 1rem;
+  max-width: 100%;
+
+  @include sm {
+    grid-template-columns: repeat(1, minmax(25%, auto));
+  }
+
+  @include md {
+    grid-template-columns: repeat(2, minmax(50%, auto));
+  }
+
+  @include lg {
+    grid-template-columns: repeat(2, minmax(50%, auto));
+  }
+}
+
+.card {
+  padding: 1rem 1.2rem;
+  border-radius: var(--border-radius);
+  background: rgba(var(--card-rgb), 0);
+  border: 1px solid rgba(var(--card-border-rgb), 0);
+  transition: background 200ms, border 200ms;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  &:hover {
+    background: rgba(var(--card-rgb), 0.1);
+    border: 1px solid rgba(var(--card-border-rgb), 0.1);
+  }
+}
+
+.button {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: $primary--color;
+  border: black 1px solid;
+  cursor: pointer;
+  &:hover {
+    background-color: $secondary--color;
+  }
+}

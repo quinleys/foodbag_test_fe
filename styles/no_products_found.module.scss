@@ -1,0 +1,11 @@
+@import "abstracts/colors";
+@import "abstracts/typography";
+
+.row {
+  display: flex;
+  padding-left: 1rem;
+  span {
+    font-size: $fs--400;
+    font-weight: $fw--medium;
+  }
+}

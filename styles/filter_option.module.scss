@@ -1,0 +1,24 @@
+@import "abstracts/colors";
+@import "abstracts/typography";
+
+.option {
+  list-style: none;
+  &:hover {
+    color: $secondary--color;
+  }
+
+  &__item {
+    padding: 0.25rem 0;
+    &:hover {
+      background-color: $gray--color;
+      cursor: pointer;
+    }
+  }
+
+  &__label {
+    font-size: $fs--400;
+    font-weight: $fw--light;
+    color: $faded--black--color;
+    margin-left: 0.5rem;
+  }
+}

@@ -1,0 +1,44 @@
+@import "abstracts/colors";
+@import "abstracts/typography";
+
+.card {
+  border-radius: 1rem;
+  border: black 1px solid;
+  padding: 1rem;
+  margin: 10px;
+  cursor: pointer;
+
+  &__image {
+    object-fit: cover;
+    border-radius: 5px;
+  }
+}
+
+.badge {
+  background-color: $secondary--color;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 0.25rem 0.5rem;
+  font-size: $fs--300;
+  font-weight: $fw--light;
+  color: $white--color;
+}
+
+.badge__secondary {
+  @extend .badge;
+  background-color: $secondary--color;
+}
+
+.title {
+  font-size: $fs--400;
+  font-weight: $fw--medium;
+  color: $black--color;
+  margin: 0.5rem 0;
+}
+
+.subtitle {
+  font-size: $fs--400;
+  font-weight: $fw--light;
+  margin: 0 0 0.5rem 0;
+  color: $faded--gray--color;
+}

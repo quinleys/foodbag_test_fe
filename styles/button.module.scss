@@ -1,0 +1,40 @@
+@import "abstracts/colors";
+@import "abstracts/typography";
+
+.button {
+  background-color: $secondary--color;
+  width: 100%;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 5px;
+
+  span {
+    font-size: $fs--400;
+    font-weight: $fw--light;
+    color: $white--color;
+  }
+
+  &:hover {
+    background-color: $primary--color;
+    cursor: pointer;
+    span {
+        color: $secondary--color;
+    }
+  }
+
+  &__primary {
+    background-color: $primary--color;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px;
+  }
+
+  &__secondary {
+    background-color: $secondary--color;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px;
+  }
+}

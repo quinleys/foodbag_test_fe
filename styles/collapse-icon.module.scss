@@ -1,0 +1,13 @@
+$rotate--timing: 0.5s;
+
+.icon {
+  &__collapsed {
+    rotate: -180deg;
+    transition: rotate $rotate--timing;
+  }
+
+  &__expanded {
+    rotate: 0deg;
+    transition: rotate $rotate--timing;
+  }
+}

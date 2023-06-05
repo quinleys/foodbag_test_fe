@@ -1,0 +1,23 @@
+@import "abstracts/colors";
+@import "abstracts/typography";
+
+.badge {
+  background-color: $secondary--color;
+  //padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 0.25rem 0.5rem;
+  font-size: $fs--300;
+  font-weight: $fw--light;
+  color: $white--color;
+
+  &__primary {
+    @extend .badge;
+    background-color: $secondary--color;
+  }
+
+  &__secondary {
+    @extend .badge;
+    background-color: $primary--color;
+  }
+}

@@ -1,0 +1,58 @@
+@import "abstracts/colors";
+@import "abstracts/typography";
+
+.pagination__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+
+    ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.pagination__item {
+    padding: 0.5rem;
+    margin: 0 10px;
+    color: $black--color;
+    font-size: $fs--400;
+    font-weight: $fw--medium;
+    border: $white--color 1px solid;
+    cursor: pointer;
+
+
+    &__disabled {
+        cursor: not-allowed;
+        background-color: $white--color;
+        color: $faded--gray--color;
+        padding: 0.5rem;
+        margin: 0 10px;
+    }
+
+    &__active {
+        background-color: $slate--color;
+        border-radius: 5px;
+        color: $black--color;
+        cursor: not-allowed;
+        padding: 0.5rem;
+        margin: 0 10px;
+        font-size: $fs--400;
+        font-weight: $fw--medium;
+    }
+
+    &:hover {
+        background-color: $slate--color;
+        border-radius: 5px;
+        border: $secondary--color 1px solid;
+    }
+}

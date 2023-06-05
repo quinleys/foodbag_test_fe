@@ -1,0 +1,19 @@
+@import "abstracts/colors";
+@import "abstracts/typography";
+
+.content {
+  position: relative;
+  width: 100%;
+  padding: 0 1rem;
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+
+  &__results {
+    margin: 0 1rem;
+
+    font-size: $fs--300;
+    font-weight: $fw--light;
+    color: $faded--gray--color;
+  }
+}
