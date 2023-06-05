@@ -18,3 +18,6 @@
 - [x] Product detail modal
 - [x] Custom styling (SCSS)
 - [x] Responsive design
+
+## Demo
+https://youtu.be/GX4zdO3IBFE
