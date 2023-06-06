@@ -1,8 +1,8 @@
-import styles from "../styles/product_list.module.scss";
+import styles from "../../styles/product_list.module.scss";
 import mainStyles from "@/styles/main.module.scss";
-import ProductCardComponent from "@/components/ProductCardComponent";
-import PaginationComponent from "@/components/PaginationComponent";
-import ProductModalComponent from "@/components/ProductModalComponent";
+import ProductCardComponent from "@/components/Products/ProductCardComponent";
+import PaginationComponent from "@/components/UI/PaginationComponent";
+import ProductModalComponent from "@/components/Products/ProductModalComponent";
 import {ReactElement, useEffect, useState} from "react";
 import {pageInformation} from "@/interfaces/filters";
 import {Product} from "@/interfaces/products";

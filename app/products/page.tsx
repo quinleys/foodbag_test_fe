@@ -1,14 +1,15 @@
 import HandleProductFilterComponent from "@/components/HandleProductFilterComponent";
 import {ErrorHandling, getPossibleFilters, getProducts} from "@/requests/products";
 import mainStyles from '../../styles/main.module.scss';
+import {ReactElement} from "react";
 
-export default async function ProductsPage({searchParams}) {
+export default async function ProductsPage({searchParams}): Promise<ReactElement> {
     const products: Response | ErrorHandling = await getProducts(queryString(searchParams));
     const filters: Response | ErrorHandling = await getPossibleFilters();
 
     function queryString(searchParams) {
-        let params = '';
-        Object.keys(searchParams).forEach((key, index) => {
+        let params: string = '';
+        Object.keys(searchParams).forEach((key: string, index: number): void => {
             if (index === 0) {
                 params += '?'
             } else {

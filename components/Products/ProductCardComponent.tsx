@@ -1,6 +1,6 @@
 import Image from "next/image";
-import mainStyles from "../styles/main.module.scss";
-import styles from "../styles/product_card.module.scss";
+import mainStyles from "../../styles/main.module.scss";
+import styles from "../../styles/product_card.module.scss";
 import BadgeComponent from "@/components/UI/BadgeComponent";
 import {ReactElement} from "react";
 import {Product, ProductCategory} from "@/interfaces/products";

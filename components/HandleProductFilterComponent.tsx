@@ -1,6 +1,6 @@
 'use client';
 
-import FiltersComponent from "@/components/FiltersComponent";
+import FiltersComponent from "@/components/Filters/FiltersComponent";
 import {Filter, FilterOption, pageInformation, SelectedFilterCollection} from "@/interfaces/filters";
 import {ReactElement, useEffect, useState} from "react";
 import {getProducts} from "@/requests/products";
@@ -11,7 +11,7 @@ import SearchBar from "@/components/Filters/SearchBar";
 import BadgeComponent from "@/components/UI/BadgeComponent";
 import ButtonComponent from "@/components/UI/ButtonComponent";
 import LoadingComponent from "@/components/UI/LoadingComponent";
-import ProductListComponent from "@/components/ProductListComponent";
+import ProductListComponent from "@/components/Products/ProductListComponent";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFilter} from "@fortawesome/free-solid-svg-icons";
 import NoProductsFoundComponent from "@/components/UI/NoProductsFoundComponent";

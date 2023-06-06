@@ -1,6 +1,6 @@
 import Filter from "@/components/Filters/Filter";
 import {Filter as FilterInterface} from "@/interfaces/filters";
-import styles from '../styles/filter.module.scss';
+import styles from '../../styles/filter.module.scss';
 import ResetFilterButton from "@/components/Filters/ResetFilterButton";
 import ButtonComponent from "@/components/UI/ButtonComponent";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";

@@ -1,5 +1,5 @@
 import badgeStyles from "@/styles/badge.module.scss";
-import styles from '../styles/product_modal.module.scss'
+import styles from '../../styles/product_modal.module.scss'
 import mainStyles from "@/styles/main.module.scss";
 import BadgeComponent from "@/components/UI/BadgeComponent";
 import Image from "next/image";
