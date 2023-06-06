@@ -10,13 +10,17 @@ export interface ProductCategory {
     external_id: string;
 }
 
+export interface Image {
+    url: string;
+}
+
 export interface Product {
     name: string;
     subtitle: string;
     description: string;
     external_id: string;
     slug: string;
-    images: string[];
+    images: Image[];
     categories: ProductCategory[];
     allergies: Allergy[];
 }

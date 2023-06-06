@@ -72,7 +72,6 @@ export default function HandleProductFilterComponent({
         }
     }
 
-
     useEffect((): void => {
         setLoading(true)
         fetchItems().then((): void => setLoading(false))
@@ -160,12 +159,13 @@ export default function HandleProductFilterComponent({
     }
 
     return (
-        <div>
+        <>
             <div className={styles.row}>
                 <SearchBar
                     handleSearch={handleSearch}
                     value={selectedFilters['search']}/>
             </div>
+            {/* Extra Mobile Features */}
             <div className={styles.row}>
                 <div className={filterStyles.mobile__filters__information}>
                     <div className={filterStyles.mobile__filters__information__badges__row}>
@@ -204,6 +204,6 @@ export default function HandleProductFilterComponent({
                                           pageMeta={pageMeta}/>
                 )}
             </div>
-        </div>
+        </>
     )
 }

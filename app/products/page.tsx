@@ -11,11 +11,7 @@ export default async function ProductsPage({searchParams}): Promise<ReactElement
     function queryString(searchParams) {
         let params: string = '';
         Object.keys(searchParams).forEach((key: string, index: number): void => {
-            if (index === 0) {
-                params += '?'
-            } else {
-                params += '&'
-            }
+            index === 0 ? params += '?' : params += '&'
 
             if (searchParams[key] !== '') {
                 params += `${key}=${searchParams[key]}`
@@ -26,11 +22,11 @@ export default async function ProductsPage({searchParams}): Promise<ReactElement
 
     return (
         <main className={mainStyles.container}>
-            {products.error && (
+            {(products.error || filters.error) && (
                 <ErrorComponent/>
             )}
-            {(!products?.error || filters?.error) && (
-                <div>
+            {(!products?.error && !filters?.error) && (
+                <>
                     <div className={mainStyles.title__row}>
                         <h1 className={mainStyles.title}>Producten</h1>
                     </div>
@@ -38,7 +34,7 @@ export default async function ProductsPage({searchParams}): Promise<ReactElement
                                                   pageInformation={products.meta}
                                                   queryString={queryString(searchParams)}
                                                   queryParams={searchParams}/>
-                </div>
+                </>
             )}
         </main>
     )

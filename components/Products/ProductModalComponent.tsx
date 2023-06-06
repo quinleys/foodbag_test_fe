@@ -6,7 +6,7 @@ import Image from "next/image";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faAngleRight, faXmark} from '@fortawesome/free-solid-svg-icons';
 import {ReactElement} from "react";
-import {Product} from "@/interfaces/products";
+import {Allergy, Product, ProductCategory} from "@/interfaces/products";
 
 export default function ProductModalComponent({
                                                   product,
@@ -60,12 +60,12 @@ export default function ProductModalComponent({
                         <p>{product.description}</p>
                         <div className={mainStyles.row}>
                             <div className={styles.modal__visible__card__body__categories}>
-                                {product.categories.map((category, index) => (
+                                {product.categories.map((category: ProductCategory) => (
                                     <BadgeComponent title={category.name} key={category.external_id}/>
                                 ))}
                             </div>
                             <div className={styles.modal__visible__card__body__categories}>
-                                {product.allergies.map((allergy, index) => (
+                                {product.allergies.map((allergy: Allergy) => (
                                     <BadgeComponent title={allergy.name} className={badgeStyles.badge__secondary}
                                                     key={allergy.external_id}/>
                                 ))}

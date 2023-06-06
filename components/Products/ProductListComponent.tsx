@@ -12,7 +12,7 @@ export default function ProductListComponent({products, pageMeta, page, handlePa
     pageMeta: pageInformation,
     page: number,
     handlePageChange: (page: number) => void
-}) : ReactElement{
+}): ReactElement {
     const [modalVisible, setModalVisible] = useState(false);
     const [modalProduct, setModalProduct] = useState<Product>(null);
     const [nextProduct, setNextProduct] = useState<Product>(null);
@@ -23,6 +23,7 @@ export default function ProductListComponent({products, pageMeta, page, handlePa
         setModalVisible(!modalVisible);
     }
 
+    // Set next and previous product for modal
     useEffect((): void => {
         const index: number = products.indexOf(modalProduct)
         products[index + 1] ? setNextProduct(products[index + 1]) : setNextProduct(null)
@@ -39,25 +40,23 @@ export default function ProductListComponent({products, pageMeta, page, handlePa
 
     return (
         <div className={styles.content}>
-            <span className={styles.content__results}>
-                            Results: {pageMeta.total} products
-                        </span>
+            <span className={styles.content__results}>Results: {pageMeta.total} products</span>
             <div className={mainStyles.grid}>
-                {
-                    products.map((product: Product) => (
-                        <ProductCardComponent key={product.external_id} product={product} handleCardClick={handleCardClick}/>
-                    ))
-                }
+                {products.map((product: Product) => (
+                    <ProductCardComponent key={product.external_id} product={product}
+                                          handleCardClick={handleCardClick}/>
+                ))}
             </div>
-            {modalProduct && modalVisible && (
-                <ProductModalComponent key={modalProduct} product={modalProduct} visible={modalVisible}
+            {(modalProduct && modalVisible) && (
+                <ProductModalComponent key={modalProduct.external_id} product={modalProduct} visible={modalVisible}
                                        nextProduct={nextProduct} prevProduct={prevProduct}
                                        handleVisibility={handleVisibility}
                                        handleModalClick={handleModalClick}/>
-            )
-            }
-            <PaginationComponent currentPage={page} setPage={handlePageChange}
-                                 pageInformation={pageMeta}/>
+            )}
+            {(page && pageMeta) && (
+                <PaginationComponent currentPage={page} setPage={handlePageChange}
+                                     pageInformation={pageMeta}/>
+            )}
         </div>
     )
 }
