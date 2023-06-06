@@ -3,7 +3,7 @@
 import FiltersComponent from "@/components/Filters/FiltersComponent";
 import {Filter, FilterOption, pageInformation, SelectedFilterCollection} from "@/interfaces/filters";
 import {ReactElement, useEffect, useState} from "react";
-import {ApiResponse, ErrorHandling, getProducts} from "@/requests/products";
+import {getProducts} from "@/requests/products";
 import styles from '../app/products/page.module.css';
 import filterStyles from '../styles/filter.module.scss';
 import {useRouter} from "next/navigation";
@@ -16,6 +16,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFilter} from "@fortawesome/free-solid-svg-icons";
 import NoProductsFoundComponent from "@/components/UI/NoProductsFoundComponent";
 import {Product} from "@/interfaces/products";
+import {ApiResponse, ErrorHandling} from "@/interfaces/requests";
 
 export default function HandleProductFilterComponent({
                                                          filtersCollection,
@@ -45,6 +46,11 @@ export default function HandleProductFilterComponent({
         setLoading(false)
     }, []);
 
+    useEffect((): void => {
+        setLoading(true)
+        fetchItems().then((): void => setLoading(false))
+    }, [selectedFilters, page])
+
     function querystringToState(): void {
         filtersCollection.forEach((filter: Filter): void => {
             const items = queryParams[filter.slug]?.split(',').map((item: string) => {
@@ -71,11 +77,6 @@ export default function HandleProductFilterComponent({
             }))
         }
     }
-
-    useEffect((): void => {
-        setLoading(true)
-        fetchItems().then((): void => setLoading(false))
-    }, [selectedFilters, page])
 
     const fetchItems = async (): Promise<void> => {
         let query: string = '?per_page=12'

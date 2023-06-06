@@ -24,6 +24,7 @@ export default function FiltersComponent({
         <div className={collapsed ? styles.filter__container__collapsed : styles.filter__container}>
             <div className={styles.filter__title__row}>
                 <h1 className={styles.filter__title}>Filters</h1>
+                {/* Mobile button */}
                 <div>
                     <ButtonComponent handleClick={handleToggleFilters}
                                      className={styles.mobile__filters__close__button}>

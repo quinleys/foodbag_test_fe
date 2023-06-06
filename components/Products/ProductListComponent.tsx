@@ -18,17 +18,17 @@ export default function ProductListComponent({products, pageMeta, page, handlePa
     const [nextProduct, setNextProduct] = useState<Product>(null);
     const [prevProduct, setPrevProduct] = useState<Product>(null);
 
-    const handleCardClick = (product: Product): void => {
-        setModalProduct(product);
-        setModalVisible(!modalVisible);
-    }
-
     // Set next and previous product for modal
     useEffect((): void => {
         const index: number = products.indexOf(modalProduct)
         products[index + 1] ? setNextProduct(products[index + 1]) : setNextProduct(null)
         products[index - 1] ? setPrevProduct(products[index - 1]) : setPrevProduct(null)
     }, [modalProduct])
+
+    const handleCardClick = (product: Product): void => {
+        setModalProduct(product);
+        setModalVisible(!modalVisible);
+    }
 
     const handleModalClick = (product: Product): void => {
         setModalProduct(product);

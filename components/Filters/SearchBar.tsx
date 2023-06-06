@@ -3,8 +3,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import useDebounce from "@/hooks/useDebounce";
 import {FormEvent, ReactElement, useEffect, useState} from "react";
-import {ApiResponse, ErrorHandling, getAutoComplete} from "@/requests/products";
+import {getAutoComplete} from "@/requests/products";
 import LoadingComponent from "@/components/UI/LoadingComponent";
+import {ApiResponse, ErrorHandling} from "@/interfaces/requests";
 
 export default function SearchBar({handleSearch, value}: {
     handleSearch: (string) => void,
@@ -42,6 +43,11 @@ export default function SearchBar({handleSearch, value}: {
         }
     }, [search]);
 
+    useEffect((): void => {
+        if (debouncedSearch && search !== value) {
+            handleAutoComplete()
+        }
+    }, [debouncedSearch])
 
     const handleAutoComplete = async (): Promise<void> => {
         setError(false)
@@ -76,12 +82,6 @@ export default function SearchBar({handleSearch, value}: {
         setAutocompleteVisible(false)
         handleSearch(item)
     }
-
-    useEffect((): void => {
-        if (debouncedSearch && search !== value) {
-            handleAutoComplete()
-        }
-    }, [debouncedSearch])
 
     return (
         <div className={style.filter__searchBar__container}>

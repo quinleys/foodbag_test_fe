@@ -24,7 +24,7 @@
 
   &__primary {
     background-color: $primary--color;
-    color: white;
+    color: $white--color;
     padding: 5px;
     border-radius: 5px;
     margin: 5px;
@@ -32,7 +32,7 @@
 
   &__secondary {
     background-color: $secondary--color;
-    color: white;
+    color: $white--color;
     padding: 5px;
     border-radius: 5px;
     margin: 5px;

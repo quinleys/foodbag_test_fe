@@ -1,14 +1,4 @@
-export interface ApiResponse {
-    data: [],
-    meta: {},
-    message?: string
-}
-
-export interface ErrorHandling {
-    error: boolean,
-    data: [],
-    message: string
-}
+import {ApiResponse, ErrorHandling} from "@/interfaces/requests";
 
 function errorHandling(res: any): ErrorHandling {
     return {
@@ -35,7 +25,6 @@ async function getProducts(query: string = ''): Promise<ApiResponse | ErrorHandl
             })
 
         return handleResponse(res)
-
     } catch (e) {
         return errorHandling(e)
     }
@@ -43,7 +32,7 @@ async function getProducts(query: string = ''): Promise<ApiResponse | ErrorHandl
 
 async function getPossibleFilters(): Promise<ApiResponse | ErrorHandling> {
     try {
-        const res = await fetch(process.env.API_URL + '/products/filters', {
+        const res: Response = await fetch(process.env.API_URL + '/products/filters', {
             headers: {
                 'api-token': process.env.API_TOKEN
             }
@@ -60,7 +49,7 @@ async function getAutoComplete(query: string = ''): Promise<ApiResponse | ErrorH
     }
 
     try {
-        const res = await fetch(process.env.API_URL + '/products/auto-complete', {
+        const res: Response = await fetch(process.env.API_URL + '/products/auto-complete', {
             method: 'POST',
             body: JSON.stringify(body),
             headers: {
@@ -70,7 +59,6 @@ async function getAutoComplete(query: string = ''): Promise<ApiResponse | ErrorH
         })
 
         return handleResponse(res)
-
     } catch (e) {
         return errorHandling(e)
     }

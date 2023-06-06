@@ -1,6 +1,6 @@
 import {ChangeEvent, ReactElement, useEffect, useState} from "react";
 import styles from '../../styles/filter_option.module.scss';
-import { FilterOptionProps } from '@/interfaces/filters';
+import {FilterOptionProps} from '@/interfaces/filters';
 
 export default function FilterOption({
                                          filterItem,
@@ -15,7 +15,7 @@ export default function FilterOption({
     }, [selectedFilters])
 
     const handleState = (): void => {
-        selectedFilters[filterTitle]?.filter((filter) :boolean => filter.slug === filterItem.slug).length > 0
+        selectedFilters[filterTitle]?.filter((filter): boolean => filter.slug === filterItem.slug).length > 0
             ? setChecked(true)
             : setChecked(false)
     }
@@ -25,15 +25,13 @@ export default function FilterOption({
     }
 
     return (
-        <ul key={filterItem.uuid} className={styles.option}>
-            <li className={styles.option__item}>
-                <input type={"checkbox"} id={filterItem.uuid} name={filterItem.name}
-                       checked={checked}
-                       value={filterItem.slug}
-                       onChange={(e: ChangeEvent<HTMLInputElement>) => handleCheckboxChangeLocally(e)}
-                />
-                <label className={styles.option__label} htmlFor={filterItem.uuid}>{filterItem.name}</label>
-            </li>
-        </ul>
+        <li className={styles.option__item}>
+            <input type={"checkbox"} id={filterItem.uuid} name={filterItem.name}
+                   checked={checked}
+                   value={filterItem.slug}
+                   onChange={(e: ChangeEvent<HTMLInputElement>) => handleCheckboxChangeLocally(e)}
+            />
+            <label className={styles.option__label} htmlFor={filterItem.uuid}>{filterItem.name}</label>
+        </li>
     )
 }

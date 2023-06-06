@@ -1,5 +1,6 @@
 import {ChangeEvent, ReactElement, useState} from "react";
 import styles from '../../styles/filter.module.scss';
+import filterOptionStyles from '../../styles/filter_option.module.scss';
 import CollapseIconComponent from "@/components/UI/CollapseIconComponent";
 import {Filter, FilterOption as FilterOptionInterface} from "@/interfaces/filters";
 import FilterOption from "@/components/Filters/FilterOption";
@@ -26,11 +27,13 @@ export default function Filter({filter, handleCheckboxChange, selectedFilters}: 
                 <CollapseIconComponent collapsed={collapsed} handleClick={handleCollapseClick}/>
             </div>
             <div className={collapsed ? styles.collapsed : styles.expanded}>
+                <ul className={filterOptionStyles.option}>
                 {filter.data.map((filterItem: FilterOptionInterface) => (
                     <FilterOption key={filterItem.uuid} filterTitle={filter.slug} filterItem={filterItem}
                                   handleCheckboxChange={handleCheckboxChange}
                                   selectedFilters={selectedFilters}/>
                 ))}
+                </ul>
             </div>
         </div>
     )

@@ -1,8 +1,9 @@
 import HandleProductFilterComponent from "@/components/HandleProductFilterComponent";
-import {ApiResponse, ErrorHandling, getPossibleFilters, getProducts} from "@/requests/products";
+import {getPossibleFilters, getProducts} from "@/requests/products";
 import mainStyles from '../../styles/main.module.scss';
 import {ReactElement} from "react";
 import ErrorComponent from "@/components/UI/ErrorComponent";
+import {ApiResponse, ErrorHandling} from "@/interfaces/requests";
 
 export default async function ProductsPage({searchParams}): Promise<ReactElement> {
     const products: ApiResponse | ErrorHandling = await getProducts(queryString(searchParams));
