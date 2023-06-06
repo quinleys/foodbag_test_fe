@@ -3,14 +3,14 @@ import mainStyles from "../../styles/main.module.scss";
 import styles from "../../styles/product_card.module.scss";
 import BadgeComponent from "@/components/UI/BadgeComponent";
 import {ReactElement} from "react";
-import {Product, ProductCategory} from "@/interfaces/products";
+import {Allergy, Product, ProductCategory} from "@/interfaces/products";
 
 export default function ProductCardComponent({product, handleCardClick}: {
     product: Product,
     handleCardClick: (Product) => void
 }): ReactElement {
     return (
-        <div className={mainStyles.card} onClick={() => handleCardClick(product)}>
+        <article className={mainStyles.card} onClick={() => handleCardClick(product)}>
             {product.images && (
                 <div style={{width: '100%', height: 200, position: "relative"}}>
                     <Image src={product.images[0].url} alt={product.name} fill={true}
@@ -34,6 +34,6 @@ export default function ProductCardComponent({product, handleCardClick}: {
                     ))}
                 </div>
             )}
-        </div>
+        </article>
     )
 }

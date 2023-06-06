@@ -6,7 +6,6 @@ export default function NavBarComponent(): ReactElement {
         <nav className={styles.nav}>
             <div>
                 logo
-                {/*<Image src={} alt={}/>*/}
             </div>
             <ul>
                 <li>

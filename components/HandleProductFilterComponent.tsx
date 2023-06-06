@@ -3,7 +3,7 @@
 import FiltersComponent from "@/components/Filters/FiltersComponent";
 import {Filter, FilterOption, pageInformation, SelectedFilterCollection} from "@/interfaces/filters";
 import {ReactElement, useEffect, useState} from "react";
-import {getProducts} from "@/requests/products";
+import {ApiResponse, ErrorHandling, getProducts} from "@/requests/products";
 import styles from '../app/products/page.module.css';
 import filterStyles from '../styles/filter.module.scss';
 import {useRouter} from "next/navigation";
@@ -48,8 +48,14 @@ export default function HandleProductFilterComponent({
     function querystringToState(): void {
         filtersCollection.forEach((filter: Filter): void => {
             const items = queryParams[filter.slug]?.split(',').map((item: string) => {
-                return filter.data.find((filterItem: FilterOption): boolean => filterItem.slug === item)
-            })
+                const found: FilterOption | undefined = filter.data.find((filterItem: FilterOption): boolean => filterItem.slug === item)
+                if (found?.name) {
+                    return found
+                }
+                queryParams[filter.slug] = ''
+                // remove items we dont want to show
+            }).filter((item: FilterOption) => item !== undefined)
+
             if (items !== undefined) {
                 setSelectedFilters((prevState: any) => ({
                     ...prevState,
@@ -69,7 +75,7 @@ export default function HandleProductFilterComponent({
 
     useEffect((): void => {
         setLoading(true)
-        fetchItems().then(r => setLoading(false))
+        fetchItems().then((): void => setLoading(false))
     }, [selectedFilters, page])
 
     const fetchItems = async (): Promise<void> => {
@@ -96,13 +102,20 @@ export default function HandleProductFilterComponent({
             query += `&page=${page}`
         }
 
+        // query string is used for the url
+        // @ts-ignore
         router.push('/products' + query, undefined, {shallow: true})
 
         setOldSelectedFilters(selectedFilters)
 
-        const productsResponse = await getProducts(query.toLowerCase())
-        setProducts(productsResponse.data)
-        setPageMeta(productsResponse.meta)
+        const productsResponse: ApiResponse | ErrorHandling = await getProducts(query.toLowerCase())
+
+        if (!productsResponse?.error) {
+            setProducts(productsResponse.data)
+            setPageMeta(productsResponse.meta)
+        } else {
+            setProducts([])
+        }
     }
 
     const handleSetSelectedFilters = (value, filterItem, filterTitle): void => {
@@ -156,14 +169,12 @@ export default function HandleProductFilterComponent({
             <div className={styles.row}>
                 <div className={filterStyles.mobile__filters__information}>
                     <div className={filterStyles.mobile__filters__information__badges__row}>
-                        {Object.keys(selectedFilters).map((key) => {
+                        {Object.keys(selectedFilters).map((key: string) => {
                             if (key !== 'search') {
                                 return (
                                     selectedFilters[key].map((filterItem: FilterOption) => (
-                                            <BadgeComponent title={filterItem.name} key={filterItem.uuid}/>
-                                        )
-                                    )
-                                )
+                                        <BadgeComponent title={filterItem.name} key={filterItem.uuid}/>
+                                    )))
                             }
                         })}
                     </div>
